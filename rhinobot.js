@@ -18,20 +18,26 @@ fs.readdir("./events/", (err, files) => {
 
 //Occurs when any message is seen
 client.on("message", (message) => {
-  //Don't respond to bot or non-prefix messages
-  if (message.author.bot || message.content.indexOf(config.prefix) !== 0) return;
+    //Don't respond to bot or non-prefix messages
+    if (message.author.bot || message.content.indexOf(config.prefix) !== 0) return;
 
-  const args    = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
+    const args      = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const command   = args.shift().toLowerCase();
 
-  //Find related file for given command
-  try {
-      let commandFile = require(`./commands/${command}.js`);
-      commandFile.run(client, message, args);
-  } catch (err) {
-      console.error(err);
-  }
+    //Find related file for given command
+    try {
+        let commandFile = require(`./commands/${command}.js`);
+        commandFile.run(client, message, args);
+    } catch (err) {
+        console.error(err);
+    }
 });
 
+client.on("error", (e) => console.error(e));
+client.on("warn", (e) => console.warn(e));
+client.on("debug", (e) => console.info(e));
 
-client.login(config.token);
+client.login(config.token)
+    .catch((err) => {
+        console.error(err);
+    });

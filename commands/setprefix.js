@@ -4,7 +4,7 @@ exports.run = (client, message, args) => {
     const config    = require("../config.json");
 
     if (args.length === 0 || args[0].length !== 1)
-        message.channel.send("Prefix must be one character")
+        message.channel.send("Prefix must be one character");
     else {
         config.prefix = args[0];
 

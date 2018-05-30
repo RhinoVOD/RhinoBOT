@@ -1,3 +1,4 @@
+//Launched when bot starts/restarts
 exports.run = (client) => {
     console.log(`Ready to server in ${client.channels.size} `+
                 `channels on ${client.guilds.size} servers, `+

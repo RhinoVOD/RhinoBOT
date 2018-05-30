@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/en/) - JavaScript runtime
+* [Node.js](https://nodejs.org/en/) - JavaScript runtime, requires version 6.0.0 or newer
 * [Discord Bot](https://discordapp.com/developers/applications/me) - Requires your own Bot Token
 
 ### Installing
@@ -25,13 +25,16 @@ https://discordapp.com/oauth2/authorize?client_id=APP_ID&scope=bot
 Download and unzip the project to a desired location.
 
 Create a config.json file in the main folder. Include your Bot's token,
-the desired commands prefix, and your guild's Admin role. Variable names must be the same as shown below.
+the desired commands prefix, your guild's Admin role, your guild's default channel ID, and your user ID.
+Variable names must be the same as shown below.
 
 ```
 {
 "token": "diunIDUNAIUDSnon2ibwdaskdjbaUISDBA",
-"prefix": "!"
-"adminRole": "mod"
+"prefix": "!",
+"adminRole": "mod",
+"defaultChannel": "124785412358945124",
+"ownerID": "124564687564631546"
 }
 ```
 
@@ -45,7 +48,7 @@ node rhinobot.js
 ## Built With
 
 * [discord.js](https://discord.js.org/#/) - node.js module to interact with Discord's API
-* [WebStorm](https://www.jetbrains.com/webstorm/) - Javascript IDE
+* [WebStorm](https://www.jetbrains.com/webstorm/) - JavaScript IDE
 * [GitHub Desktop](https://desktop.github.com/) - GitHub app
 
 ## Authors

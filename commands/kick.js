@@ -8,7 +8,7 @@ exports.run = (client, message, args) => {
 
     //User doesn't have necessary Role
     if (!message.member.roles.has(modRole.id))
-        return message.reply("you don't have the permission role");
+        return message.reply(" you don't have the admin role");
 
     //Message has no mentioned user
     if (message.mentions.members.size === 0)

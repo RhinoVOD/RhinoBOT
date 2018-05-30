@@ -1,4 +1,4 @@
-//Reload the file for the specified command
+//Reload a command's file, removes need to restart bot
 exports.run = (client, message, args) => {
     if(!args || args.size < 1)
         return message.reply("Must provide a command name to reload.");
