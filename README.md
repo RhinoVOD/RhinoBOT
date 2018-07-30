@@ -25,7 +25,7 @@ https://discordapp.com/oauth2/authorize?client_id=APP_ID&scope=bot
 Download and unzip the project to a desired location.
 
 Create a config.json file in the main folder. Include your Bot's token,
-the desired commands prefix, your guild's Admin role, your guild's default channel ID, and your user ID.
+the desired commands prefix, your guild's Live role, your guild's Admin role, your guild's default channel ID, and your user ID.
 Variable names must be the same as shown below.
 
 ```
@@ -33,6 +33,7 @@ Variable names must be the same as shown below.
 "token": "diunIDUNAIUDSnon2ibwdaskdjbaUISDBA",
 "prefix": "!",
 "adminRole": "mod",
+"liveRole": "live",
 "defaultChannel": "124785412358945124",
 "ownerID": "124564687564631546"
 }
