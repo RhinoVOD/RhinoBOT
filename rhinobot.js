@@ -11,9 +11,14 @@ fs.readdir("./events/", (err, files) => {
         let eventFunction = require(`./events/${file}`);
         let eventName = file.split(".")[0];
         client.on(eventName, (...args) => eventFunction.run(client, ...args));
-
     });
+});
 
+//Modifies the bot's current activity status
+client.on("ready", () => {
+    client.user.setActivity('with my code', { type: 'PLAYING' })
+        .then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
+        .catch(console.error);
 });
 
 //Occurs when any message is seen
