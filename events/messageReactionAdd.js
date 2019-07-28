@@ -5,18 +5,18 @@ exports.run = (client, reaction, user) => {
     const starboard = config.starboardChannel;
 
     //Ignore reactions that aren't a star
-    if (reaction.emoji.name !== '⭐') return;
+    if (message.channel.type !== `text` || reaction.emoji.name !== '⭐') return;
     //Remove self star reactions
     if (message.author.id === user.id && reaction.emoji.name === '⭐' && message.guild.me.hasPermission("MANAGE_MESSAGES"))
         return reaction.remove(reaction.message.author.id);
 
 
 
-    const fetch = message.guild.channels.get(starboard).fetchMessages({limit: 100})
-        .then(messages => console.log(`Received ${messages.size} messages`))
-        .catch(console.error);
+    const fetch = message.guild.channels.find(channel => channel.name === `starboard`);
 
-    const stars = fetch.find(m => m.embeds[0].footer.text.startsWith('⭐') && m.embeds[0].footer.text.endsWith(message.id));
+    const fetchedMessages = fetch.fetchMessages({limit: 100});
+
+    const stars = fetchedMessages.find(m => m.embeds[0].footer.text.startsWith('⭐') && m.embeds[0].footer.text.endsWith(message.id));
 
     if (stars) {
         const star = /^\⭐\s([0-9]{1,3})\s\|\s([0-9]{17,20})/.exec(stars.embeds[0].footer.text);

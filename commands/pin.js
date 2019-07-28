@@ -1,6 +1,10 @@
 //Pin the given message ID
 //TODO: Allow pinning from any channel, not just the current one
 exports.run = (client, message, args) => {
+    if (!message.guild.available){
+        return message.channel.send("Guild currently unavailable");
+    }
+
     if (!message.member.hasPermission("MANAGE_MESSAGES"))
         return message.channel.send("You don't have permission");
 
@@ -14,7 +18,7 @@ exports.run = (client, message, args) => {
 
             if(fetchedMsg === undefined)
                 message.channel.send("MessageID not found");
-            else if(fetchedMsg !== undefined && fetchedMsg.pinned === true)
+            else if(fetchedMsg.pinned === true)
                 message.channel.send("Message already pinned");
             else {
                 fetchedMsg.pin()

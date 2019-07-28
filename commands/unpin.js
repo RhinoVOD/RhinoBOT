@@ -11,7 +11,7 @@ exports.run = (client, message, args) => {
 
             if(fetchedMsg === undefined)
                 message.channel.send("MessageID not found");
-            else if(fetchedMsg !== undefined && fetchedMsg.pinned === false)
+            else if(fetchedMsg.pinned === false)
                 message.channel.send("Message is not already pinned");
             else {
                 fetchedMsg.unpin()

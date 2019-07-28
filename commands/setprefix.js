@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
         message.channel.send("Prefix must be one character");
     else {
         config.prefix = args[0];
-
         fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
+        message.channel.send("Prefix has been changed to " + args[0]);
     }
 };

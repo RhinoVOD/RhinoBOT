@@ -1,7 +1,6 @@
 const Discord   = require("discord.js");
 const client    = new Discord.Client();
 const fs        = require("fs");
-
 const config    = require("./config.json");
 
 //Associate events files with related event
@@ -14,7 +13,7 @@ fs.readdir("./events/", (err, files) => {
     });
 });
 
-//Modifies the bot's current activity status
+//Set the bot's activity status
 client.on("ready", () => {
     client.user.setActivity('with my code', { type: 'PLAYING' })
         .then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
@@ -23,7 +22,7 @@ client.on("ready", () => {
 
 //Occurs when any message is seen
 client.on("message", (message) => {
-    //Don't respond to bot or non-prefix messages
+    //Ignore bot or non-prefix messages
     if (message.author.bot || message.content.indexOf(config.prefix) !== 0) return;
 
     const args      = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -34,7 +33,6 @@ client.on("message", (message) => {
         let commandFile = require(`./commands/${command}.js`);
         commandFile.run(client, message, args);
     } catch (err) {
-        console.error(err);
     }
 });
 

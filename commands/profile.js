@@ -1,40 +1,54 @@
 //Display information about a user
 exports.run = (client, message, args) => {
-    message.channel.send({embed: {
+    let profileUser;
+    let profileMember;
+
+    if (args.length > 1)
+        return message.channel.send("Invalid Input");
+    else if (args.length === 1)
+        profileUser = client.users.find('username', args[0]);
+    else
+        profileUser = message.author;
+
+    profileMember = message.guild.members.find('id', profileUser.id);
+
+    message.channel.send({
+        embed: {
             color: 3447003,
             thumbnail: {
-                url: `${message.author.displayAvatarURL}`
+                url: `${profileUser.displayAvatarURL}`
             },
             fields: [
                 {
-                name: `User Profile`,
-                value: `Info related to ${message.author}`
+                    name: `User Profile`,
+                    value: `Info related to ${profileUser}`
                 },
                 {
                     name: "Username",
-                    value: `${message.author.username}#${message.author.discriminator}`
+                    value: `${profileUser.username}#${profileUser.discriminator}`
                 },
                 {
                     name: "User ID",
-                    value: `${message.author.id}`
+                    value: `${profileUser.id}`
                 },
                 {
                     name: "Status",
-                    value: `${message.author.presence.status}`
+                    value: `${profileUser.presence.status}`
                 },
                 {
                     name: "Highest Rank",
-                    value: `${message.member.highestRole}`
+                    value: `${profileMember.highestRole}`
                 },
                 {
                     name: "Account Created",
-                    value: `${message.author.createdAt}`
+                    value: `${profileUser.createdAt}`
                 },
                 {
                     name: "Joined Server",
-                    value: `${message.member.joinedAt}`
+                    value: `${profileMember.joinedAt}`
                 }
             ],
             timestamp: new Date(),
-        }});
+        }
+    });
 };
