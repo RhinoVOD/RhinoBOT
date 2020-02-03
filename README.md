@@ -1,6 +1,6 @@
 # RhinoBOT
 
-As a project for my Summer 2018 break, I decided to create a Discord bot using Javascript.
+As a project for my Summer 2018 break, I decided to create a Discord bot using JavaScript.
 I have never used either of these tools so this project was chosen as an opportunity to enhance my coding skills.
 Follow the steps below if you'd like to use the code to begin your own Discord bot or click the links to learn about the resources I used.
 
@@ -11,7 +11,8 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 * [Node.js](https://nodejs.org/en/) - JavaScript runtime, requires version 6.0.0 or newer
-* [Discord Bot](https://discordapp.com/developers/applications/me) - Requires your own Bot Token
+* [discord.js](https://discord.js.org/#/) - A node.js module to interact with the Discord API
+* [Discord Bot](https://discordapp.com/developers/applications/me) - Requires your own Bot Token to use Discord's API
 
 ### Installing
 
@@ -39,7 +40,7 @@ Variable names must be the same as shown below.
 }
 ```
 
-Open the command prompt in the main folder and run this to launch the bot.
+Open the command prompt in the main folder and run this command to launch the bot.
 This command differs if you change the name of the rhinobot.js file.
 
 ```
@@ -48,6 +49,7 @@ node rhinobot.js
 
 ## Built With
 
+* [Discord Developer Portal](https://discordapp.com/developers/docs/intro) - Documentation for Discord's API
 * [discord.js](https://discord.js.org/#/) - node.js module to interact with Discord's API
 * [WebStorm](https://www.jetbrains.com/webstorm/) - JavaScript IDE
 * [GitHub Desktop](https://desktop.github.com/) - GitHub app
