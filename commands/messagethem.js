@@ -3,7 +3,7 @@ exports.run = (client, message, args) => {
     if (args.length !== 1)
         return message.channel.send("Invalid Input");
 
-    let user = client.users.find('username', args[0]);
+    let user = client.users.cache.find(element => element.username === args[0]);
 
     if (user === null)
         return message.channel.send("User not found");

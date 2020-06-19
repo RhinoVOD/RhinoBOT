@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
     if (args.length > 1)
         return message.channel.send("Invalid Input");
     else if (args.length === 1)
-        user = client.users.find('username', args[0]);
+        user = client.users.cache.find(element => element.username === args[0]);
     else
         user = message.author;
 
@@ -13,14 +13,12 @@ exports.run = (client, message, args) => {
         embed: {
             color: 3447003,
             image: {
-                url: `${user.displayAvatarURL}`,
+                url: `${user.avatarURL()}`,
             },
-            fields: [
-                {
-                    name: `Profile Name`,
-                    value: `${user}`
-                }
-            ],
+            fields: [{
+                name: `Profile Name`,
+                value: `${user}`
+            }],
             timestamp: new Date(),
         }
     });

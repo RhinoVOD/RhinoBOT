@@ -1,13 +1,15 @@
 //Kick a user from the guild
 exports.run = (client, message, args) => {
     const config  = require("../config.json");
-    const modRole = message.guild.roles.find("name", config.adminRole);
+    const modRole = message.guild.roles.cache.find(element => element.name === config.adminRole);
+
+
 
     if (modRole === null)
         return message.reply(`${config.adminRole} role does not exist`);
 
     //User doesn't have necessary Role
-    if (!message.member.roles.has(modRole.id))
+    if (!message.member.roles.cache.has(modRole.id))
         return message.reply(" you don't have the admin role");
 
     //Message has no mentioned user

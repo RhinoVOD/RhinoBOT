@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
             color: 3447003,
             fields: [{
                 name: "Ping",
-                value: `:ping_pong: Pong! ${client.ping}ms`
+                value: `:ping_pong: Pong! ${client.ws.ping}ms`
             }],
             timestamp: new Date(),
         }

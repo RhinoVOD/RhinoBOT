@@ -10,4 +10,12 @@ exports.run = (client, message, args) => {
     catch (err) {
         message.channel.send("Command failed to reload or doesn't exist");
     }
+
+    try {
+        delete require.cache[require.resolve(`../events/${args[0]}.js`)];
+        message.channel.send(`The event ${args[0]} has been reloaded`);
+    }
+    catch (err) {
+        message.channel.send("Event failed to reload or doesn't exist");
+    }
 };
