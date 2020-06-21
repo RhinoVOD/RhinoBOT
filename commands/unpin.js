@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
     if (args[0].length !== 18 || args[0].match(/^[0-9]+$/) == null)
         return message.channel.send("Invalid MessageID");
 
-    message.channel.fetchMessages({around: args[0], limit: 1})
+    message.channel.messages.fetch({around: args[0], limit: 1})
         .then(messages => {
             const fetchedMsg = messages.first();
 
