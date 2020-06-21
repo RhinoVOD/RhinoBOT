@@ -6,48 +6,43 @@ exports.run = (client, message, args) => {
     if (args.length > 1)
         return message.channel.send("Invalid Input");
     else if (args.length === 1)
-        profileUser = client.users.find('username', args[0]);
+        profileUser = client.users.cache.find(element => element.username === args[0]);
     else
         profileUser = message.author;
 
-    profileMember = message.guild.members.find('id', profileUser.id);
+    profileMember = message.guild.members.cache.find(element => element.id === profileUser.id);
 
     message.channel.send({
         embed: {
             color: 3447003,
             thumbnail: {
-                url: `${profileUser.displayAvatarURL}`
+                url: `${profileUser.avatarURL()}`,
             },
             fields: [
-                {
-                    name: `User Profile`,
-                    value: `Info related to ${profileUser}`
-                },
-                {
-                    name: "Username",
-                    value: `${profileUser.username}#${profileUser.discriminator}`
-                },
-                {
-                    name: "User ID",
-                    value: `${profileUser.id}`
-                },
-                {
-                    name: "Status",
-                    value: `${profileUser.presence.status}`
-                },
-                {
-                    name: "Highest Rank",
-                    value: `${profileMember.highestRole}`
-                },
-                {
-                    name: "Account Created",
-                    value: `${profileUser.createdAt}`
-                },
-                {
-                    name: "Joined Server",
-                    value: `${profileMember.joinedAt}`
-                }
-            ],
+            {
+                name: `User Profile`,
+                value: `Info related to ${profileUser}`
+            },
+            {
+                name: "Username",
+                value: `${profileUser.username}#${profileUser.discriminator}`
+            },
+            {
+                name: "User ID",
+                value: `${profileUser.id}`
+            },
+            {
+                name: "Status",
+                value: `${profileUser.presence.status}`
+            },
+            {
+                name: "Account Created",
+                value: `${profileUser.createdAt}`
+            },
+            {
+                name: "Joined Server",
+                value: `${profileMember.joinedAt}`
+            }],
             timestamp: new Date(),
         }
     });
