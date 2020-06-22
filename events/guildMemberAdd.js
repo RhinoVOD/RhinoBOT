@@ -6,11 +6,7 @@ exports.run = (client, member) => {
     let currentTimestamp = date.getTime();
     let profileUser = member.user;
 
-    member.guild.channels.cache.get(`${config.defaultChannel}`).send(`Welcome ${member.displayName}`);
-    member.guild.channels.cache.get(`${config.defaultChannel}`).send(currentTimestamp - profileUser.joinedTimestamp / 1000 + 'minutes');
-
-    if(currentTimestamp - profileUser.createdTimestamp < 60000){
-      member.guild.channels.cache.get(`${config.defaultChannel}`).send(`This account was made less than 10 minutes ago`);
-      member.guild.channels.cache.get(`${config.defaultChannel}`).send(currentTimestamp - profileUser.createdTimestamp);
+    if(currentTimestamp - profileUser.createdTimestamp < 8.64 * Math.pow(10, 7)){
+      member.guild.channels.cache.get(`${config.defaultChannel}`).send(`New account warning: ${member}`);
     }
 };
