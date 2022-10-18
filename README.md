@@ -56,4 +56,4 @@ node rhinobot.js
 
 ## Authors
 
-* **Ryan Marsh** - *Project Creator* - [Rhino48](https://github.com/Rhino48)
+* **Ryan Marsh** - *Project Creator* - [RhinoVOD](https://github.com/RhinoVOD)
