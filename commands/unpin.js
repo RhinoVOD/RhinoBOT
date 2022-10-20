@@ -1,24 +1,30 @@
 //Unpin the given message ID
-//TODO: Allow unpinning from any channel, not just the current one
-exports.run = (client, message, args) => {
-    //Return if arg isn't proper size or isn't only numbers
-    if (args[0].length !== 18 || args[0].match(/^[0-9]+$/) == null)
-        return message.channel.send("Invalid MessageID");
+const { SlashCommandBuilder } = require('discord.js');
 
-    message.channel.messages.fetch({around: args[0], limit: 1})
-        .then(messages => {
-            const fetchedMsg = messages.first();
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('unpin')
+        .setDescription('Unpins the given message')
+        .addStringOption(option =>
+            option.setName('input')
+                .setDescription('The ID of the message to unpin')
+                .setRequired(true)),
+    async execute(interaction, client) {
+        const messageID = interaction.options.getString('input');
 
-            if(fetchedMsg === undefined)
-                message.channel.send("MessageID not found");
-            else if(fetchedMsg.pinned === false)
-                message.channel.send("Message is not already pinned");
-            else {
-                fetchedMsg.unpin()
-                    .catch((err) => {
-                        message.channel.send("Message failed to unpin");
-                        console.error(err);
-                    });
-            }
-        });
+        interaction.channel.messages.fetch(`${messageID}`)
+            .then(message => {
+                if (message.pinned === false)
+                    interaction.reply("Message is not pinned");
+                else {
+                    message.unpin()
+                        .catch((err) => {
+                            interaction.reply("Message failed to pin");
+                            console.error(err);
+                        });
+                    interaction.reply('Message unpinned');
+                }
+            })
+            .catch(() => interaction.reply("Command failed"));
+    },
 };

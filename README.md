@@ -25,25 +25,25 @@ https://discordapp.com/oauth2/authorize?client_id=APP_ID&scope=bot
 
 Download and unzip the project to a desired location.
 
-Create a config.json file in the main folder. Include your Bot's token,
-the desired commands prefix, your guild's Live role, your guild's Admin role, your guild's default channel ID, and your user ID.
+Create a config.json file in the main folder. Include your bot's token,
+your bot's client ID, your guild's ID, and your account's ID.
 Variable names must be the same as shown below.
 
 ```
 {
-"token": "diunIDUNAIUDSnon2ibwdaskdjbaUISDBA",
-"prefix": "!",
-"adminRole": "mod",
-"liveRole": "live",
-"defaultChannel": "124785412358945124",
-"ownerID": "124564687564631546"
+  "token":"diunIDUNAIUDSnon2ibwdaskdjbaUISDBA",
+  "clientID": "589451241245646875",
+  "guildID": "124785412358945124",
+  "ownerID": "124564687564631546"
 }
 ```
 
-Open the command prompt in the main folder and run this command to launch the bot.
+Open the command prompt in the main folder and run these commands to launch the bot.
 This command differs if you change the name of the rhinobot.js file.
+deploy-commands.js must be run again after adding or removing commands.
 
 ```
+node deploy-commands.js
 node rhinobot.js
 ```
 

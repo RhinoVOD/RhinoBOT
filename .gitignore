@@ -37,6 +37,9 @@ cmake-build-release/
 # IntelliJ
 out/
 
+# IntelliJ plugin
+.idea/discord.xml
+
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
@@ -54,3 +57,4 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+.idea/discord.xml

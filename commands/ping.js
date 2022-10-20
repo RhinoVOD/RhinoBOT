@@ -1,13 +1,11 @@
 //Check response time of bot
-exports.run = (client, message, args) => {
-    message.channel.send({
-        embed: {
-            color: 3447003,
-            fields: [{
-                name: "Ping",
-                value: `:ping_pong: Pong! ${client.ws.ping}ms`
-            }],
-            timestamp: new Date(),
-        }
-    });
+const { SlashCommandBuilder } = require('discord.js');
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('ping')
+        .setDescription('Check the bot response time'),
+    async execute(interaction, client) {
+        await interaction.reply(`Pong! ${client.ws.ping}ms`);
+    },
 };

@@ -1,25 +1,27 @@
-//Display information about a user
-exports.run = (client, message, args) => {
-    let user;
+//Display the user's profile picture
+const { SlashCommandBuilder } = require('discord.js');
 
-    if (args.length > 1)
-        return message.channel.send("Invalid Input");
-    else if (args.length === 1)
-        user = client.users.cache.find(element => element.username === args[0]);
-    else
-        user = message.author;
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('picture')
+        .setDescription('Replies with your profile picture and some info'),
+    async execute(interaction, client)  {
+        let user = interaction.user;
 
-    message.channel.send({
-        embed: {
+        const exampleEmbed = {
             color: 3447003,
+            fields: [
+                {
+                    name: `Profile Name`,
+                    value: `${user}`
+                },
+            ],
             image: {
-                url: `${user.avatarURL()}`,
+                url: `${user.displayAvatarURL()}`,
             },
-            fields: [{
-                name: `Profile Name`,
-                value: `${user}`
-            }],
-            timestamp: new Date(),
-        }
-    });
+            timestamp: new Date().toISOString(),
+        };
+
+        await interaction.reply({ embeds: [exampleEmbed] });
+    },
 };
