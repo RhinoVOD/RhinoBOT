@@ -10,14 +10,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-* [Node.js](https://nodejs.org/en/) - JavaScript runtime, requires version 6.0.0 or newer
+* [Node.js](https://nodejs.org/en/) - JavaScript runtime, requires version v16.9.0 or newer
 * [discord.js](https://discord.js.org/#/) - A node.js module to interact with the Discord API
 * [Discord Bot](https://discordapp.com/developers/applications/me) - Requires your own Bot Token to use Discord's API
 
 ### Installing
 
 Create your bot from the link above then go to the link below,
-replacing APP_ID with your bot's Client ID, to invite your bot to your guild.
+replacing APP_ID with your bot's Client ID, to invite your bot to your guild / server.
 
 ```
 https://discordapp.com/oauth2/authorize?client_id=APP_ID&scope=bot
