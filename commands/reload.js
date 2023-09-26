@@ -5,55 +5,27 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('reload')
         .setDescription('Reload the file for a given command')
-        .addBooleanOption(isCommand =>
-            isCommand.setName('type')
-                .setDescription('True for command, false for event')
-                .setRequired(true))
         .addStringOption(option =>
-            option.setName('input')
+            option.setName('commandName')
                 .setDescription('The name of the command')
                 .setRequired(true)),
     async execute(interaction, client) {
-        const isCommand = interaction.options.getBoolean('isCommand');
         let commandName = interaction.options.getString('input');
 
-        if (isCommand) {
-            commandName = './' + commandName;
-        }
-        else {
-            commandName = '../events/' + commandName;
+        const command = interaction.client.commands.get(commandName);
+        if (!command) {
+            return interaction.reply(`Command \`${commandName}\` not found`);
         }
 
         try {
-            delete require.cache[require.resolve(`${commandName}.js`)];
-            interaction.reply(`The command ${commandName} has been reloaded`);
+            await interaction.client.commands.delete(command.data.name);
+            const newCommand = require(`./${command.data.name}.js`);
+            await interaction.client.commands.set(newCommand.data.name, newCommand);
+            await interaction.reply(`Command \`${newCommand.data.name}\` was successfully reloaded`);
         }
         catch (err) {
-            interaction.reply("Reload failed or command/event doesn't exist");
+            console.error(err);
+            await interaction.reply(`There was an error while reloading \`${command.data.name}\`:\n\`${err.message}\``);
         }
     },
-};
-
-
-
-
-exports.run = (client, message, args) => {
-    if(!args || args.size < 1)
-        return message.reply("Must provide a command name to reload");
-
-    try {
-        delete require.cache[require.resolve(`./${args[0]}.js`)];
-        message.channel.send(`The command ${args[0]} has been reloaded`);
-    }
-    catch (err) {
-        message.channel.send("Command failed to reload or doesn't exist");
-    }
-
-    try {
-        delete require.cache[require.resolve(`../events/${args[0]}.js`)];
-        message.channel.send(`The event ${args[0]} has been reloaded`);
-    }
-    catch (err) {
-        message.channel.send("Event failed to reload or doesn't exist");
-    }
 };

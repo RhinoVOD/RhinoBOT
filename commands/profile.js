@@ -16,7 +16,7 @@ module.exports = {
             fields: [
                 {
                     name: "Username",
-                    value: `${user.username}#${user.discriminator}`
+                    value: user.discriminator === '0' ? `${user.username}` : `${user.username}#${user.discriminator}`
                 },
                 {
                     name: "User ID",
