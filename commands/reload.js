@@ -6,7 +6,7 @@ module.exports = {
         .setName('reload')
         .setDescription('Reload the file for a given command')
         .addStringOption(option =>
-            option.setName('commandName')
+            option.setName('command')
                 .setDescription('The name of the command')
                 .setRequired(true)),
     async execute(interaction, client) {
