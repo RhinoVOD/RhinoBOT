@@ -13,7 +13,8 @@ module.exports = {
                 .setMaxValue(10)),
     async execute(interaction, client) {
         const number = interaction.options.getInteger('input') ?? 0;
-        const message = await interaction.reply({ content: 'Poll', fetchReply: true });
+        const response = await interaction.reply({ content: 'Poll', withResponse: true });
+        const message = response.resource.message;
 
         if (number !== 0) {
             await numberPoll(message, number);
