@@ -11,7 +11,7 @@ client.login(config.token)
     });
 
 //Set the bot's activity status
-client.on("ready", () => {
+client.on("clientReady", () => {
     client.user.setActivity('the internet', { type: 0 })
 });
 

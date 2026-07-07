@@ -9,7 +9,7 @@ module.exports = {
         const websiteEmbed = {
             color: 3447003,
             title: `:earth_americas: My Website`,
-            url: `https://www.ryanmarsh.info/`,
+            url: `https://ryan-marsh.weebly.com/`,
         };
 
         await interaction.reply({ embeds: [websiteEmbed] });
